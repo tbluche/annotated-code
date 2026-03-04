@@ -275,7 +275,7 @@ function updateGenerated(){
   const area = document.getElementById('generated');
   const lines = state.highlights.map(h=>{
     const ranges = (h.ranges||[]).map(r=>rangeToString(r)).join(',');
-    return `color:${h.color};background:${h.background};range:${ranges}`;
+    return `-- color:${h.color};background:${h.background};range:${ranges}`;
   });
   area.value = lines.join('\n');
 }
