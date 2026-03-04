@@ -52,13 +52,18 @@ annotated-code/
 ├── templates/
 │   ├── template_highlight/     # HTML/JS/CSS template for the highlight viewer
 │   └── template_viz/           # HTML/JS/CSS template for the annotation viewer
-├── sandbox/example_1/          # Working example you can run right away
+├── examples/
+│   └── fibonacci/              # Minimal worked example (see Quickstart below)
+│       ├── code.py
+│       └── annotations.md
 └── pyproject.toml
 ```
 
 ---
 
 ## Script 1 – Highlight viewer (`generate_highlight.py`)
+
+![highlight viewer screenshot](img/highlighter.png)
 
 Embeds a source file into a ready-to-open HTML page. No annotations are required; the highlighting is done interactively in the browser.
 
@@ -77,8 +82,10 @@ python scripts/generate_highlight.py <code_file> [--out <name>] [--dst <dir>]
 ### Example
 
 ```bash
-uv run python scripts/generate_highlight.py sandbox/example_1/code.py
-# With pip install -e .:  python scripts/generate_highlight.py sandbox/example_1/code.py
+uv run python scripts/generate_highlight.py \
+    examples/fibonacci/code.py \
+    --dst=examples/fibonacci_highlight
+# With pip install -e .:  python scripts/generate_highlight.py examples/fibonacci/code.py --dst=examples/fibonacci_highlight
 ```
 
 This creates `out_viz_highlight/code/index.html`. Open that file in any browser to use the viewer.
@@ -86,6 +93,8 @@ This creates `out_viz_highlight/code/index.html`. Open that file in any browser 
 ---
 
 ## Script 2 – Annotation viewer (`generate_viz.py`)
+
+![annotation viewer screenshot](img/viewer.png)
 
 Combines a source file with a pre-written annotation file and generates a self-contained HTML page that displays each annotation alongside highlighted code ranges.
 
@@ -106,11 +115,16 @@ python scripts/generate_viz.py <code_file> <annotations_file> [--out <name>] [--
 
 ```bash
 uv run python scripts/generate_viz.py \
-    sandbox/example_1/code.py \
-    sandbox/example_1/annot.md
+    examples/fibonacci/code.py \
+    examples/fibonacci/annotations.md \
+    --dst=examples/fibonacci_viz
 ```
 
 This creates `out_viz/code/index.html`. Open that file in any browser to read the annotated explanation.
+
+The `examples/fibonacci/` folder contains a self-contained example: a short Python module with four
+functions and a matching `annotations.md` that describes memoization, base cases, a list
+comprehension, and an unbounded loop — each annotation highlights the exact lines it refers to.
 
 ---
 

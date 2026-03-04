@@ -72,7 +72,7 @@ def main():
             shutil.copyfile(src, dst)
 
     print("Generated highlight viewer in:", out_dir)
-    print("Open the index.html file in a browser to use the tool.")
+    print(f"Open the {out_dir}/index.html file in a browser to use the tool.")
 
 
 if __name__ == "__main__":

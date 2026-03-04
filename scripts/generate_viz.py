@@ -58,13 +58,12 @@ def main():
     # Read source code and escape for embedding in <code>
     with open(code_path, "r", encoding="utf-8") as f:
         code = f.read()
-    code_html = html.escape(code)
 
     with open(annotation_path, "r", encoding="utf-8") as f:
         annotation_str = f.read()
 
     annotations = parse_annotations(annotation_str)
-    annotated_code = AnnotatedCode(code=code_html, annotations=annotations)
+    annotated_code = AnnotatedCode(code=code, annotations=annotations)
     embedded = annotated_code.model_dump()
 
     # Copy files, injecting code into index.html
